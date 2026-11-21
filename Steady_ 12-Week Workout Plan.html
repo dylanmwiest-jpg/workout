@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#f5f2ea">
+<title>Steady — 12-Week Companion</title>
+<style>
+:root{--bg:#f5f2ea;--card:#fffdf8;--ink:#2a2d2a;--mut:#6a716a;--sage:#6f8f75;--sage2:#dfe8df;--lav:#8e7fbf;--lav2:#ece8f6;--line:#e4dfd2}
+@media(prefers-color-scheme:dark){:root{--bg:#1b1f1c;--card:#252a26;--ink:#eceee8;--mut:#a3aaa2;--sage:#8fb396;--sage2:#2f3a31;--lav:#b5a8e0;--lav2:#302c40;--line:#343b35}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,system-ui,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:Georgia,"Iowan Old Style",serif;font-weight:600;line-height:1.2;margin:0 0 8px}
+h1{font-size:28px}h2{font-size:22px;margin-top:22px}h3{font-size:18px}
+main{padding:calc(env(safe-area-inset-top) + 18px) 16px calc(100px + env(safe-area-inset-bottom));max-width:620px;margin:auto}
+.card,details{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0}
+details summary{font-weight:600;cursor:pointer;list-style:none}details summary::-webkit-details-marker{display:none}
+small,.mut{color:var(--mut);font-size:14px}
+button,select,input,textarea{font:inherit;color:inherit}
+.btn{display:block;width:100%;min-height:52px;border:0;border-radius:16px;background:var(--sage);color:#fff;font-weight:600;padding:12px 16px;margin:8px 0;cursor:pointer}
+.btn.alt{background:var(--lav2);color:var(--ink)}.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:5}
+nav button{flex:1;border:0;background:none;font-size:11px;color:var(--mut);padding:4px 0;min-height:48px}
+nav button span{display:block;font-size:22px}nav button.on{color:var(--sage);font-weight:700}
+.dots{display:flex;gap:10px;margin:10px 0}.dots i{width:30px;height:30px;border-radius:50%;border:2px solid var(--sage);display:grid;place-items:center;font-style:normal;font-size:14px;color:#fff}.dots i.f{background:var(--sage)}
+.tag{display:inline-block;background:var(--sage2);border-radius:99px;padding:2px 10px;font-size:13px;margin:2px 4px 2px 0}.tag.l{background:var(--lav2)}
+.rt{display:flex;gap:6px}.rt button{flex:1;min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--card)}.rt button.on{background:var(--sage);color:#fff;border-color:var(--sage)}
+.chk{display:flex;gap:12px;align-items:center;min-height:48px;width:100%;border:0;background:none;text-align:left;border-bottom:1px solid var(--line)}
+.chk b{width:28px;height:28px;border-radius:9px;border:2px solid var(--sage);display:grid;place-items:center;flex:none;color:#fff}.chk.on b{background:var(--sage)}
+#pl,#sh{position:fixed;inset:0;background:var(--bg);z-index:20;overflow:auto;display:none;padding:calc(env(safe-area-inset-top) + 14px) 16px 40px}
+#pl.on{display:block}#sh{background:rgba(0,0,0,.45);padding:0}#sh.on{display:flex;align-items:flex-end}
+#sh>div{background:var(--bg);width:100%;border-radius:24px 24px 0 0;padding:20px 16px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}
+.set{display:flex;gap:8px;align-items:center;margin:8px 0}.set input{width:100%;min-height:48px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);padding:0 10px;text-align:center}
+.set .ok{flex:none;width:52px;min-height:48px;border-radius:12px;border:2px solid var(--sage);background:none;font-size:20px;color:var(--sage)}.set .ok.on{background:var(--sage);color:#fff}
+textarea{width:100%;min-height:64px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);padding:10px}
+select,input[type=date],input[type=number]{min-height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);padding:0 8px}
+.safe{font-size:13px;color:var(--mut);background:var(--lav2);border-radius:14px;padding:10px 12px;margin:10px 0}
+.guide h3{font-size:16px;margin:16px 0 4px;font-family:inherit}.guide ol,.guide ul{padding-left:22px;margin:4px 0}.guide li{margin:8px 0}
+svg.fig{width:100%;max-height:150px;background:var(--sage2);border-radius:16px}
+.bar{height:10px;background:var(--sage2);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--sage)}
+.day{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.day.v{background:var(--lav2);border-radius:12px;padding:10px}
+.cel{position:fixed;inset:0;z-index:30;display:grid;place-items:center;background:rgba(0,0,0,.4)}.cel>div{background:var(--card);border-radius:24px;padding:28px;text-align:center;max-width:320px;animation:pop .5s}
+.cel b{display:inline-block;font-size:44px;animation:pop .6s}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head><body>
+<main id="m"></main><div id="pl"></div><div id="sh"></div><div id="ce"></div>
+<nav id="nv"></nav>
+<script>
+const $=s=>document.querySelector(s),K='steady12';
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const pd=s=>{const[a,b,c]=s.split('-');return new Date(+a,+b-1,+c)};
+const add=(s,n)=>{const d=pd(s);d.setDate(d.getDate()+n);return ymd(d)};
+const mon=s=>{const d=pd(s);return add(s,-((d.getDay()+6)%7))};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TODAY=ymd(new Date());
+const TRIPS=[{s:'2026-11-26',e:'2026-12-02',n:'Thanksgiving'},{s:'2026-12-23',e:'2026-12-27',n:'Christmas'}];
+let S={};
+try{S=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
+S=Object.assign({start:TODAY,phase:1,done:{},sched:{},logs:[],vac:[],vacOn:false,prot:{on:true,t:100},nut:{},well:{},refl:{},meas:false,m:[],seen:false,add:{},wo:0,flags:{}},S);
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+let tab='home',P=null;
+
+const MSG=["A 10-minute workout still counts.","If you miss a day, just do the next workout on your list.","Lighter weight with good form is still progress.","Any exercise can be swapped for an easier version.","Rest days are part of the plan.","Strength builds slowly. Doing it regularly is what matters."];
+const msg=()=>MSG[Math.floor(pd(TODAY).getTime()/864e5)%MSG.length];
+
+/* ---------- vacation ---------- */
+const trips=()=>TRIPS.concat(S.vac);
+const isVac=d=>S.vacOn&&d===TODAY||trips().some(t=>d>=t.s&&d<=t.e);
+const VMSG="Workouts aren't scheduled while you're away, and nothing is marked missed. Pick the plan back up when you're home.";
+
+/* ---------- content ---------- */
+const fig=p=>{const c='stroke="#6f8f75" stroke-width="5" stroke-linecap="round" fill="none"',a='stroke="#8e7fbf"';
+const B={lie:`<circle cx="20" cy="56" r="7" fill="#6f8f75"/><path ${c} d="M28 60H70L88 42L104 60"/><path ${a} stroke-width="5" stroke-linecap="round" d="M30 60L48 66"/>`,
+sit:`<circle cx="44" cy="18" r="7" fill="#6f8f75"/><path ${c} d="M44 26V54H80V76"/><path ${a} stroke-width="5" stroke-linecap="round" fill="none" d="M44 34L66 42"/><rect x="26" y="26" width="6" height="40" rx="3" fill="#8e7fbf" opacity=".4"/>`,
+stand:`<circle cx="60" cy="14" r="7" fill="#6f8f75"/><path ${c} d="M60 22V50L48 76M60 50L72 76"/><path ${a} stroke-width="5" stroke-linecap="round" fill="none" d="M60 30L48 46M60 30L72 46"/>`,
+all4:`<circle cx="28" cy="32" r="7" fill="#6f8f75"/><path ${c} d="M36 36H82L86 64M40 36V64"/><path ${a} stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 8" d="M82 36L108 36M36 36L12 36"/>`,
+wall:`<rect x="100" y="6" width="8" height="70" rx="4" fill="#8e7fbf" opacity=".4"/><circle cx="52" cy="18" r="7" fill="#6f8f75"/><path ${c} d="M56 26L72 52L66 76M72 52L82 76"/><path ${a} stroke-width="5" stroke-linecap="round" fill="none" d="M60 32L98 36"/>`};
+return`<svg class="fig" viewBox="0 0 120 84" role="img" aria-label="Simple diagram of the exercise position">${B[p]}</svg>`};
+
+const EX={
+abd:{n:"Seated hip abduction",p:'sit',m:"Outer glutes (gluteus medius), hips",s:"2 × 10",eq:"Hip abduction machine",e:["Lighter weight, smaller range","Lower the weight and move through a smaller range. Pause at the start of each rep."],h:["Side-lying hip abduction","Lie on your side, knees slightly bent. Lift the top leg a little up and back, then lower slowly."],how:"Sit tall with your back against the pad. Set the pads on the outside of your knees. Press knees outward with control, pause briefly, then return slowly.",mi:"Swinging or using momentum. Leaning forward. Letting the weight slam back.",sf:"Stop if you feel a pinch in the hip or low back."},
+lp:{n:"Leg press",p:'sit',m:"Glutes, quads, hamstrings",s:"2 × 8",eq:"Leg press machine",e:["Chair sit-to-stand","Sit on a sturdy chair, stand up, then sit back down slowly. Use your hands if helpful.","ss"],h:["Chair sit-to-stand","Stand up from a chair and sit back down slowly. Push through your whole foot."],how:"Set the seat so your knees are bent comfortably. Feet hip-width apart, mid-platform. Press through your heels, stop just short of locking your knees, then return slowly.",mi:"Locking knees. Lifting hips off the seat. Going deeper than feels comfortable for your back.",sf:"Keep your lower back against the pad. Start light. Stop if your back or knees hurt."},
+gb:{n:"Glute bridge",p:'lie',m:"Glutes (maximus), hamstrings, core",s:"2 × 8–10",eq:"None (mat)",e:["Short-range bridge","Lift hips only a few inches. Same squeeze, smaller movement."],h:["Glute bridge","Same exercise at home on a mat or bed edge."],how:"Lie on your back, knees bent, feet flat. Press through your heels and lift your hips until your body forms a comfortable line. Squeeze your glutes, pause, lower slowly.",mi:"Arching the low back. Pushing through toes. Lifting too high.",sf:"If your back pinches, lift lower. Stop for sharp pain."},
+hc:{n:"Seated hamstring curl",p:'sit',m:"Hamstrings, back of thighs",s:"2 × 10",eq:"Seated leg curl machine",e:["Lighter weight, slower reps","Use the lightest weight and take 3 seconds on the way back."],h:["Bodyweight hip hinge","Stand tall, hands on hips, push hips back with soft knees, then stand up."],how:"Adjust the pad above your ankles. Curl your heels down and back, pause, then return slowly.",mi:"Jerking the weight. Lifting your hips from the seat.",sf:"Stop if you feel cramping behind the knee or back pain."},
+row:{n:"Seated cable row",p:'sit',m:"Upper back, shoulders, posture muscles",s:"2 × 10",eq:"Seated cable row machine",e:["Lighter weight, shorter pull","Use a light weight and pull only halfway."],h:["Resistance-band row","Sit with a band around your feet. Pull elbows back and squeeze shoulder blades."],how:"Sit tall, chest up. Pull the handle toward your lower ribs, squeeze your shoulder blades together, then return slowly.",mi:"Leaning back to pull. Shrugging shoulders.",sf:"Keep your back long. Stop for sharp back or shoulder pain."},
+cp:{n:"Seated chest press",p:'sit',m:"Chest, shoulders, triceps",s:"2 × 8",eq:"Chest press machine",e:["Wall push-up","Stand facing a wall, hands at chest height, and press away.","wp"],h:["Wall push-up","Do wall push-ups at home."],how:"Adjust the seat so the handles are at chest height. Press forward without locking elbows, then return slowly.",mi:"Shrugging shoulders. Locking elbows.",sf:"Stop for shoulder pain."},
+bd:{n:"Bird dog",p:'all4',m:"Core, glutes, back stability",s:"2 × 6 per side",eq:"None (mat)",e:["One limb at a time","Lift just an arm, or just a leg. Move slowly."],h:["Bird dog","Same at home on a mat."],how:"On hands and knees, keep your back flat. Reach one arm forward and the opposite leg back. Pause, return, switch.",mi:"Twisting hips. Arching the back.",sf:"Use a mat. Stop if wrists or back hurt."},
+wp:{n:"Wall push-up",p:'wall',m:"Chest, shoulders, arms, core",s:"2 × 8",eq:"A wall",e:["Stand closer to the wall","Move your feet closer for an easier angle."],h:["Wall push-up","Same at home."],how:"Stand an arm's length from a wall. Hands on the wall at chest height. Bend elbows to bring your chest toward the wall, then press back.",mi:"Sagging hips. Flaring elbows wide.",sf:"Stop for wrist or shoulder pain."},
+ss:{n:"Chair sit-to-stand",p:'stand',m:"Glutes, quads, hips",s:"2 × 8",eq:"Sturdy chair",e:["Use your hands","Push off your thighs or armrests to help."],h:["Chair sit-to-stand","Use a sturdy chair against a wall."],how:"Sit near the edge of a chair, feet hip-width apart. Lean slightly forward, stand by pushing through your heels, then sit slowly.",mi:"Rocking for momentum. Knees caving inward.",sf:"Use a stable chair. Stop if dizzy."},
+ht:{n:"Hip thrust",p:'lie',pr:1,m:"Glutes (maximus)",s:"2 × 8",eq:"Bench and optional weight",e:["Glute bridge","Return to the floor bridge."],h:["Glute bridge","Bridge from the floor or couch edge."],how:"Upper back on a bench, feet flat. Lift hips until your torso is level, squeeze, lower slowly.",mi:"Overarching the back. Feet too far or close.",sf:"Learn it with bodyweight first. Ask gym staff for a form check."},
+su:{n:"Step-up",p:'stand',pr:1,m:"Glutes, quads",s:"2 × 6 per side",eq:"Low step or bench",e:["Supported standing exercise","Hold a rail and lift your knee."],h:["Low step-up","Use a stable bottom stair."],how:"Place your whole foot on a low step. Press through that heel to stand, then step down with control.",mi:"Pushing off the back foot.",sf:"Use a rail. Stop if you feel unstable."},
+rd:{n:"Light Romanian deadlift",p:'stand',pr:1,m:"Hamstrings, glutes",s:"2 × 8",eq:"Light dumbbells",e:["Bodyweight hip hinge","Hands on hips, no weight."],h:["Bodyweight hip hinge","Same without weights."],how:"Soft knees, push hips back while sliding weights down your thighs, back flat. Stand by squeezing glutes.",mi:"Rounding the back. Squatting instead of hinging.",sf:"Keep the weight very light. Stop for back pain. Get a form check."},
+kb:{n:"Cable kickback",p:'stand',pr:1,m:"Glutes (maximus)",s:"2 × 10 per side",eq:"Cable machine, ankle strap",e:["Supported standing kickback","Hold the machine and kick without weight."],h:["Standing kickback","Hold a chair and kick back."],how:"Strap on your ankle, hold the frame, hinge slightly. Kick the leg back, squeeze, return slowly.",mi:"Arching the back.",sf:"Keep light weight."},
+sq:{n:"Supported squat",p:'stand',pr:1,m:"Glutes, quads",s:"2 × 8",eq:"Counter or rail",e:["Chair sit-to-stand","Squat down to a chair."],h:["Counter-supported squat","Hold a counter and squat only as low as comfortable."],how:"Hold a stable support. Push hips back, bend knees to a comfortable depth, press up through heels.",mi:"Knees caving. Heels lifting.",sf:"Only go as low as comfortable."}};
+const DET={
+abd:{n:["Hip abduction machine (the seated one where you push two pads outward with your knees). It's usually near the leg press or other lower-body machines. A staff member can point it out.","No equipment. A mat, rug or bed works. Optional: a loop resistance band."],
+st:["Sit all the way back in the seat with your back flat against the pad and feet on the footrests.","Set the starting-width lever so your knees begin fairly close together without feeling stretched. If you can't find it, ask staff to set it for you.","Place the pads on the outsides of your knees. Pick a light weight with the pin near the top of the stack.","Breathe out and push your knees apart for about 2 seconds, to a comfortable width.","Pause for 1 second.","Breathe in and bring your knees back slowly over 3 seconds. Don't let the weights drop or clank."],
+hs:["Lie on your right side on a mat, legs stacked. Bend the bottom knee a little for balance and rest your head on your arm.","Keep the top leg straight with toes pointing forward, not up at the ceiling. Keep your hips stacked and don't roll backward.","Lift the top leg to about hip height (roughly a 45 degree angle), over 2 seconds.","Pause for 1 second, then lower slowly over 3 seconds.","Do all your reps, then switch sides."],
+f:"Tired or burning in the outer upper part of your butt and the sides of your hips. You should not feel it in your lower back or knees.",
+mi:["Rocking or using momentum to swing the legs open.","Weight too heavy, so the knees jerk apart.","Leaning forward or letting your back leave the pad.","Rolling your hips backward on the side-lying version."]},
+lp:{n:["Leg press machine. You sit or recline and push a platform away with your feet. Ask staff to adjust the seat and show you the safety handles.","No machine at home. Do chair sit-to-stands instead (below)."],
+st:["Sit back with your head and back flat against the pad. Ask staff to set the seat so your knees start bent at about 90 degrees.","Put your feet on the platform about hip-width apart, in the middle of the platform, toes pointing slightly out.","Choose a light weight. Release the safety handles (ask staff to show you which ones).","Breathe out and press through your whole foot, especially your heels, until your legs are almost straight. Leave a soft bend in your knees.","Breathe in and bend your knees slowly over 3 seconds to about 90 degrees. Your hips and lower back should stay on the pad.","Finish your set by pressing out, then re-engage the safety handles before you get up."],
+hs:["Sit on the front half of a sturdy chair with feet flat, hip-width apart.","Lean your chest forward slightly. Your nose should be over your toes.","Breathe out and stand up by pushing through your heels.","Sit back down slowly over 3 seconds."],
+f:"Tired thighs and butt. There should be no pain in your knees or lower back.",
+mi:["Locking your knees straight at the top.","Going so deep that your hips lift off the seat or your lower back rounds.","Knees caving inward.","Feet too low on the platform, which strains the knees."]},
+gb:{n:["A mat. Most gyms have a stretching area with mats.","A mat, rug, or a firm bed."],
+st:["Lie on your back with knees bent and feet flat on the floor, hip-width apart. Your heels should be about a foot from your bottom (close enough that your fingertips can almost touch your heels).","Rest your arms by your sides, palms down.","Gently tighten your stomach, like bracing for a light tap.","Breathe out, press through your heels, and squeeze your glutes to lift your hips.","Stop when your shoulders, hips and knees form a straight line. Don't go higher than that.","Hold the squeeze for 1–2 seconds, then lower slowly over 3 seconds."],
+f:"A squeeze in your butt, with some work in the back of your thighs. If you feel it mostly in your lower back or the front of your thighs, lower your hips and move your feet slightly closer.",
+mi:["Arching your lower back and flaring your ribs to get higher.","Pushing up on your toes instead of your heels.","Feet too far away, which makes the hamstrings do most of the work.","Hips lifting unevenly to one side."]},
+hc:{n:["Seated leg curl machine (you sit and curl a padded roller down toward you with your heels). Ask staff to show you the adjustments.","No equipment. Do a bodyweight hip hinge (below)."],
+st:["Sit with your back against the pad. Put your legs on top of the roller, just above your heels.","Adjust the thigh pad so it sits snugly on top of your thighs. Your knees should line up with the machine's pivot point.","Choose a light weight.","Breathe out and pull your heels down and back for about 2 seconds.","Pause for 1 second.","Breathe in and let the roller come back up slowly over 3 seconds. Don't let the weights rest between reps."],
+hs:["Stand with feet hip-width apart, hands on your hips, and a soft bend in your knees.","Push your hips straight back, like closing a car door with your butt. Keep your back flat and chest up.","Lower until you feel a stretch behind your thighs, usually around knee height. Don't round your back.","Squeeze your glutes to stand tall again."],
+f:"Back of your thighs working. A tight cramp behind the knee is a sign to lower the weight.",
+mi:["Lifting your bottom off the seat.","Jerking the weight down fast.","Weight too heavy to control the way back up."]},
+row:{n:["Seated cable row machine, which has a footplate and a handle on a cable. A V-handle is the most common. Ask staff to attach one if it isn't there.","A resistance band (a long loop or a tube band with handles) and a mat or floor."],
+st:["Sit with your feet on the footplate and a slight bend in your knees. Set your chest pad so it touches your chest if the machine has one.","Grab the handle. Sit tall, with your shoulders down away from your ears.","Choose a light weight. You should be able to reach forward with straight arms without being yanked off the seat.","Breathe out and pull the handle toward your lower ribs, keeping your elbows close to your sides.","Squeeze your shoulder blades together and pause for 1 second.","Breathe in and let your arms extend slowly over 3 seconds while you stay tall."],
+hs:["Sit on the floor with legs straight (or knees slightly bent). Loop the band around your feet and hold an end in each hand.","Sit tall with your shoulders down.","Pull your elbows back along your sides and squeeze your shoulder blades.","Pause, then slowly let your arms extend."],
+f:"Work between your shoulder blades and in your mid-back and the back of your upper arms. It shouldn't be in your neck or lower back.",
+mi:["Leaning back to pull the weight.","Shrugging your shoulders up toward your ears.","Letting your back round forward as you extend."]},
+cp:{n:["Seated chest press machine. You sit with your back on a pad and push two handles forward.","A wall. Do wall push-ups instead."],
+st:["Adjust the seat so the handles are level with the middle of your chest.","Sit with your back flat on the pad and feet flat on the floor.","Pick a light weight. Grab the handles with palms facing down or forward.","Breathe out and press the handles forward until your arms are almost straight. Don't lock your elbows.","Breathe in and bring the handles back slowly over 3 seconds."],
+hs:["Stand about an arm's length from a wall. Put your hands on the wall at shoulder height, slightly wider than your shoulders.","Keep your body in one straight line from head to heels.","Bend your elbows and lower your chest toward the wall, with elbows at about 45 degrees.","Push back to the start."],
+f:"Work in your chest and the front of your shoulders. Triceps (back of the arms) will help too.",
+mi:["Shrugging your shoulders.","Locking your elbows.","Letting the handles snap back."]},
+bd:{n:["A mat.","A mat or rug."],
+st:["Get on your hands and knees with hands under shoulders and knees under hips. Keep your back flat, like a table.","Gently tighten your stomach. Look at the floor so your neck stays long.","Breathe out and slowly slide your right leg straight back until it's in line with your body. Keep your hips level.","If that feels good, reach your left arm forward at the same time. If not, do the leg only, then the arm only.","Hold for 2 seconds without letting your hips twist or your back sag.","Return slowly and switch sides. Do all reps on each side."],
+f:"Your abs and the muscles along your spine working gently to keep you steady. You'll also feel it in the glute of the lifted leg.",
+mi:["Arching your lower back as you lift the leg.","Hips rotating open to the side.","Lifting the leg or arm higher than your body line.","Moving fast. Slow is easier to control."]},
+wp:{n:["Any wall.","Any wall."],
+st:["Stand about an arm's length from a wall. Put your hands on the wall at shoulder height, slightly wider than your shoulders.","Step your feet back slightly. Keep your body in one straight line from head to heels.","Bend your elbows and lower your chest toward the wall, with your elbows at about 45 degrees (not flared out wide).","Press back to the start. Move slowly."],
+f:"Work in your chest, the front of your shoulders and the back of your arms, plus a light brace in your stomach.",
+mi:["Hips sagging or sticking out behind you.","Elbows flaring out wide.","Shrugging your shoulders."]},
+ss:{n:["A sturdy bench or chair that won't slide. Place it against a wall.","A sturdy chair with no wheels, placed against a wall."],
+st:["Sit on the front half of the chair with feet flat, hip-width apart, a little behind your knees.","Cross your arms or keep them out in front. Use your hands on your thighs if you need help.","Lean your chest forward slightly so your nose is over your toes.","Breathe out and stand up by pushing through your heels.","Squeeze your glutes at the top.","Slowly sit back down over 3 seconds. Touch the seat lightly. Don't flop."],
+f:"Tired thighs and butt. Standing should feel steady, not like a struggle for balance.",
+mi:["Rocking back and forth for momentum.","Knees caving inward.","Dropping into the chair instead of lowering with control."]},
+ht:{n:["A flat bench against a wall or something that won't slide. Optional: a dumbbell, or a barbell with a pad. Start without weight.","A sturdy couch edge or low, stable bench, against a wall."],
+st:["Sit on the floor with your back to the side of the bench. Lean back so the bench is just below your shoulder blades.","Bend your knees with feet flat, hip-width apart. Bring your feet close enough that your shins are straight up and down at the top.","Tuck your chin slightly. Breathe out and push through your heels to lift your hips.","Stop when your torso is level, a straight line from shoulders to knees.","Squeeze your glutes for 1–2 seconds, then lower slowly."],
+f:"A strong squeeze in your glutes, mostly. If you feel it in your lower back, lower your hips a bit.",
+mi:["Arching your lower back at the top.","Feet too far or too close.","Using weight before the movement feels easy."]},
+su:{n:["A low step or bench about 6–8 inches high. Aerobic steps work well. A rail nearby helps.","The bottom stair of a staircase with a rail."],
+st:["Stand facing the step with a rail or wall within reach.","Place your whole right foot on the step.","Breathe out and press through your right heel to stand up on the step. Don't push off with your back foot.","Step back down slowly with the same leg.","Do all reps on one side, then switch."],
+f:"Work in the glute and thigh of the leg on the step.",
+mi:["Pushing off the back foot.","Leaning too far forward.","Stepping too high to feel stable."]},
+rd:{n:["Light dumbbells (start with 5–10 lb or less) or no weight.","Water bottles, a backpack, or no weight."],
+st:["Stand with feet hip-width apart and a soft bend in your knees. Hold the dumbbells in front of your thighs.","Keep your chest up and back flat. Push your hips straight back as if closing a car door with your butt.","Slide the weights down your thighs until you feel a stretch behind your legs, usually mid-shin or knee height.","Squeeze your glutes to stand tall again."],
+f:"A stretch behind your thighs on the way down and a squeeze in your glutes standing up. If your lower back is doing the work, stop and get a form check.",
+mi:["Rounding your back.","Squatting down instead of pushing your hips back.","Using weights that are too heavy."]},
+kb:{n:["A cable machine with an ankle cuff attached at the lowest pulley. Ask staff to set it up.","No cable at home. Do standing kickbacks holding a chair."],
+st:["Clip the ankle cuff to your right ankle. Stand facing the machine and hold the frame with both hands.","Hinge slightly forward from the hips with a soft knee in your standing leg.","Breathe out and kick your right leg straight back about 12 inches. Keep your torso still.","Squeeze your glute for 1 second.","Return slowly, then repeat. Switch sides after all reps."],
+f:"A squeeze in the glute of the working leg.",
+mi:["Arching your back to kick higher.","Swinging the leg with momentum.","Weight too heavy."]},
+sq:{n:["A cable machine frame, a rail, or a Smith machine to hold. A bench behind you can mark the depth.","A kitchen counter or sturdy chair back to hold."],
+st:["Stand with feet slightly wider than hip-width and toes turned slightly out. Hold your support.","Breathe in and push your hips back as if sitting into a chair, bending your knees.","Lower only as far as feels comfortable. A partial squat is still a squat.","Breathe out and press through your heels to stand."],
+f:"Work in your thighs and glutes. Your knees should track in line with your toes.",
+mi:["Knees collapsing inward.","Heels lifting off the floor.","Going deeper than feels comfortable."]}};
+const guide=(id,home)=>{const d=DET[id],x=EX[id],h=home&&d.hs;return`<div class="guide"><h3>What you need</h3><p><b>At the gym:</b> ${d.n[0]}</p><p><b>At home:</b> ${d.n[1]}</p><h3>How to do it${h?' (home version)':''}</h3><ol>${(h?d.hs:d.st).map(t=>`<li>${t}</li>`).join('')}</ol><h3>What it should feel like</h3><p>${d.f}</p><h3>Common mistakes</h3><ul>${d.mi.map(t=>`<li>${t}</li>`).join('')}</ul><h3>Stop if</h3><p>${x.sf}</p></div>`};
+const W={A:{n:"Glutes & lower body",t:"20–30 min",ex:['abd','lp','gb','hc']},B:{n:"Cardio",t:"15–25 min",c:1},C:{n:"Upper body & core",t:"20–30 min",ex:['row','cp','bd','wp']},D:{n:"Cardio / walking",t:"15–25 min",c:1},E:{n:"Glutes & full body",t:"20–30 min",ex:['abd','ss','row','gb']}};
+const PH=[["Phase 1 · Build confidence","Get comfortable. 1–2 sets, light weight. Finish feeling you could do a bit more. Easy cardio only."],["Phase 2 · Build strength","Work toward 2 sets. Add weight only when form feels comfortable. Cardio time grows slowly."],["Phase 3 · Build independence","Add new exercises if you like. Build a routine you can keep after 12 weeks."]];
+const FOODS={Breakfast:["Eggs and toast","Greek yogurt, fruit, granola","Oatmeal with milk and nut butter"],Lunch:["Chicken or tofu rice bowl","Turkey sandwich","Bean and rice bowl"],Dinner:["Salmon, potatoes, vegetables","Chicken pasta","Stir-fry with rice","Tacos with beans or meat"],Snacks:["Greek yogurt","Cottage cheese and fruit","Hummus and vegetables","Cheese and crackers","Peanut butter toast"]};
+const SAFE=`<div class="safe"><b>Asthma:</b> follow your asthma action plan and use your prescribed medication as directed. Ask your clinician about exercise symptoms. Don't push through wheezing, chest tightness, or unusual breathlessness. Stop and follow your plan. If symptoms are severe or don't improve, get urgent medical help.</div>`;
+
+/* ---------- helpers ---------- */
+const wk=()=>Math.max(1,Math.min(12,Math.floor((pd(TODAY)-pd(S.start))/6048e5)+1));
+function weekDone(w){const s={};for(let i=0;i<7;i++){const d=S.done[add(w,i)];if(d)Object.keys(d).forEach(k=>s[k]=d[k])}return s}
+function suggest(){const sc=(S.sched[TODAY]||[]).find(k=>!(S.done[TODAY]||{})[k]);if(sc)return sc;const d=weekDone(mon(TODAY));return Object.keys(W).find(k=>!d[k])||null}
+const exList=(slot,lvl)=>{const l=W[slot].ex.concat((S.add[slot]||[]));return lvl==='min'?l.slice(0,2):l};
+const cardioTarget=()=>[12,18,22][S.phase-1];
+
+/* ---------- main render ---------- */
+function render(){
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
+ $('#m').innerHTML=({home,workouts,nutrition,progress,plan})[tab]();scrollTo(0,0)}
+$('#nv').innerHTML=[['home','🏡','Home'],['workouts','💪','Workouts'],['nutrition','🥗','Nutrition'],['progress','📈','Progress'],['plan','🗓','My Plan']].map(t=>`<button data-t="${t[0]}" onclick="go('${t[0]}')"><span>${t[1]}</span>${t[2]}</button>`).join('');
+const go=t=>{tab=t;render()};
+
+function home(){
+ const w=weekDone(mon(TODAY)),n=Object.keys(w).length,sg=suggest(),vac=isVac(TODAY);
+ let h=`<h1>Today</h1><p class="mut">Week ${wk()} of 12 · ${PH[S.phase-1][0]}</p>`;
+ if(!S.seen)h+=`<div class="card"><h3>Your workout plan</h3><p>Five workouts you can split across the week however you like. Strength: A (glutes and lower body), C (upper body and core), E (glutes and full body). Cardio: B and D (walking, bike or elliptical).</p><p>Each workout has a short 5–10 minute version, the full 20–30 minute version, and an extra option. Any of them counts as done.</p><button class="btn alt" onclick="S.seen=1;save();render()">Dismiss</button></div>`;
+ h+=`<div class="card" style="background:var(--lav2)"><p style="margin:0">${msg()}</p></div>`;
+ if(vac)h+=`<div class="card"><h3>Vacation mode</h3><p>${VMSG}</p><small>Nothing is marked missed. A walk or short home workout is here if you want one.</small><button class="btn alt" onclick="launch('B')">Optional walk</button><button class="btn ghost" onclick="launch('E',1)">Short home workout</button></div>`;
+ else if(sg)h+=`<div class="card"><small>Today's suggestion</small><h2 style="margin-top:4px">${W[sg].n}</h2><p class="mut">${W[sg].t} · or just 5–10 minutes</p><button class="btn" onclick="launch('${sg}')">Quick start</button><div class="row"><button class="btn alt" onclick="launch('${sg}',0,'min')">I'm low on motivation</button><button class="btn alt" onclick="tired()">I'm tired today</button></div></div>`;
+ else h+=`<div class="card"><h3>All five workouts done this week</h3><p>Anything else is optional.</p></div>`;
+ h+=`<div class="card"><h3>This week · ${n} of 5</h3><div class="dots">${Object.keys(W).map(k=>`<i class="${w[k]?'f':''}">${w[k]?'✓':''}</i>`).join('')}</div><small>Unfinished workouts don't carry over to next week.</small></div>`;
+ h+=`<h3>Pick a workout</h3>`+Object.keys(W).map(k=>`<button class="btn ${w[k]?'alt':''}" onclick="launch('${k}')">${k} · ${W[k].n} ${w[k]?'✓':''}<br><small style="color:inherit;opacity:.8">${W[k].t}</small></button>`).join('');
+ h+=SAFE;
+ return h}
+const tired=()=>sheet(`<h3>Low energy today</h3><p>Pick one:</p><button class="btn alt" onclick="closeSh();launch('B',0,'min')">A comfortable 5–10 minute walk</button><button class="btn alt" onclick="closeSh();launch('${suggest()||'A'}',0,'min')">Minimum version of today's workout</button><button class="btn ghost" onclick="closeSh()">Rest today</button>`);
+
+function xcard(id,open){const x=EX[id];return`<details ${open?'open':''}><summary>${x.n}<br><small>${x.m} · ${x.s}</small>${x.pr?' <span class="tag l">when ready</span>':''}</summary>${fig(x.p)}
+<p><b>Start with:</b> ${x.s}</p>${guide(id)}${DET[id].hs?`<div class="guide"><h3>Home version: ${x.h[0]}</h3><ol>${DET[id].hs.map(t=>`<li>${t}</li>`).join('')}</ol></div>`:''}<p><b>If it is too hard:</b> ${x.e[0]}. ${x.e[1]}</p><p class="mut">Persistent pain deserves a check with a clinician or physical therapist.</p>
+${x.pr?`<div class="row">${['A','E'].map(s=>`<button class="btn alt" onclick="addEx('${s}','${id}')">${(S.add[s]||[]).includes(id)?'Remove from':'Add to'} ${s}</button>`).join('')}</div>`:''}</details>`}
+function addEx(s,id){const a=S.add[s]=S.add[s]||[];const i=a.indexOf(id);i<0?a.push(id):a.splice(i,1);save();render()}
+function workouts(){
+ let h=`<h1>Workouts</h1>`+Object.keys(W).map(k=>`<div class="card"><h3>${k} · ${W[k].n}</h3><small>${W[k].t}</small><p>${W[k].c?'Walking, stationary bike, elliptical, or an outdoor walk at a comfortable, conversational pace.':exList(k).map(i=>EX[i].n).join(' · ')}</p><button class="btn" onclick="launch('${k}')">Start</button></div>`).join('');
+ h+=`<h2>Exercise library</h2><small>Tap any card. Every exercise has a home option.</small>`+Object.keys(EX).filter(i=>!EX[i].pr).map(i=>xcard(i)).join('');
+ h+=`<h2>When you feel ready</h2><small>Add these only when your current routine feels comfortable. Nothing unlocks by calendar alone.</small>`+Object.keys(EX).filter(i=>EX[i].pr).map(i=>xcard(i)).join('')+SAFE;
+ return h}
+
+/* ---------- launch + player ---------- */
+function sheet(h){$('#sh').innerHTML=`<div>${h}</div>`;$('#sh').className='on'}
+const closeSh=()=>$('#sh').className='';
+let HOME=false;
+function launch(slot,home,lvl){
+ HOME=!!home;if(lvl){startW(slot,lvl);return}
+ const c=W[slot].c,t=cardioTarget();
+ sheet(`<h3>${W[slot].n}</h3><p class="mut">Choose a version. All three count as a completed workout.</p>
+ <button class="btn alt" onclick="startW('${slot}','min')"><b>Minimum</b><br><small>${c?'A comfortable 5–10 minute walk':'5–10 minutes · 2 exercises · 1 set'}</small></button>
+ <button class="btn" onclick="startW('${slot}','std')"><b>Standard</b><br><small style="color:#fff;opacity:.85">${c?`${t} minutes, easy pace`:'The planned 20–30 minute workout'}</small></button>
+ <button class="btn alt" onclick="startW('${slot}','ext')"><b>Extra</b><br><small>Standard, plus an optional short walk</small></button>
+ ${c?'':`<button class="chk ${HOME?'on':''}" onclick="HOME=!HOME;this.classList.toggle('on')"><b>${HOME?'✓':''}</b>I'm at home today (swap in home versions)</button>`}
+ <button class="btn ghost" onclick="closeSh()">Not now</button>`)}
+function startW(slot,lvl){
+ closeSh();P={slot,lvl,i:0,home:HOME,min:lvl==='min'?7:cardioTarget(),eff:2};
+ if(!W[slot].c)P.ex=exList(slot,lvl).map(id=>({id,easier:0,flag:0,ez:0,sets:Array.from({length:lvl==='min'?1:EX[id].s.startsWith('2')?2:2},()=>({r:'',w:'',ok:0}))}));
+ pl()}
+function pl(){
+ const el=$('#pl');el.className='on';el.scrollTo(0,0);
+ const top=`<div class="row" style="align-items:center"><button class="btn ghost" style="max-width:110px" onclick="quit()">Close</button><small style="text-align:right">${P.slot} · ${W[P.slot].n} · ${{min:'Minimum',std:'Standard',ext:'Extra'}[P.lvl]}</small></div>`;
+ if(W[P.slot].c){el.innerHTML=top+`<h1>${W[P.slot].n}</h1><div class="card"><p><b>1.</b> Warm up with 3 easy minutes.<br><b>2.</b> Keep a pace where you could still talk.<br><b>3.</b> Slow down any time to recover. Build time before intensity.</p><p class="mut">Walking, stationary bike, elliptical, or outdoor walk. No machine is required.</p></div>
+ <div class="card"><h3>How long did you go?</h3><div class="set"><input type="number" inputmode="numeric" value="${P.min}" oninput="P.min=+this.value"><span>minutes</span></div><h3>How did it feel?</h3><div class="rt" id="ef">${['Easy','Okay','Medium','Hard','Tough'].map((t,i)=>`<button class="${P.eff==i+1?'on':''}" onclick="P.eff=${i+1};pl()">${t[0]}${i+1}</button>`).join('')}</div><small>1 = very easy, 5 = very hard. Easy is great.</small>${P.lvl==='ext'?'<p class="mut">Extra: add a short, relaxed walk if you feel like it.</p>':''}</div>${SAFE}<button class="btn" onclick="finish()">Finish</button>`;return}
+ const e=P.ex[P.i],x=EX[e.id],nm=e.easier?x.e[0]:(P.home?x.h[0]:x.n),last=lastLog(e.id);
+ el.innerHTML=top+`<small>Exercise ${P.i+1} of ${P.ex.length}</small><div class="bar"><i style="width:${(P.i+1)/P.ex.length*100}%"></i></div>
+ <h1 style="margin-top:12px">${esc(nm)}</h1>${fig(x.p)}<p class="mut">${x.m}<br>Start with <b>${x.s}</b>${P.home&&!e.easier?'':' · '+x.eq}</p>
+ ${e.easier?`<div class="card" style="background:var(--lav2)">${x.e[1]}</div>`:P.home?`<div class="card" style="background:var(--lav2)">${x.h[1]}</div>`:''}
+ ${last?`<small>Last time: ${last}</small>`:''}
+ ${e.sets.map((s,i)=>`<div class="set"><small>Set ${i+1}</small><input type="number" inputmode="numeric" placeholder="reps" value="${s.r}" oninput="P.ex[${P.i}].sets[${i}].r=this.value"><input type="number" inputmode="decimal" placeholder="lb (optional)" value="${s.w}" oninput="P.ex[${P.i}].sets[${i}].w=this.value"><button class="ok ${s.ok?'on':''}" aria-label="Set done" onclick="P.ex[${P.i}].sets[${i}].ok^=1;this.classList.toggle('on')">✓</button></div>`).join('')}
+ <button class="btn ghost" onclick="P.ex[${P.i}].sets.push({r:'',w:'',ok:0});pl()">+ Add a set</button>
+ <button class="chk ${e.ez?'on':''}" onclick="P.ex[${P.i}].ez^=1;this.classList.toggle('on')"><b>${e.ez?'✓':''}</b>This felt easier than before</button>
+ <div class="row"><button class="btn alt" onclick="P.ex[${P.i}].easier^=1;pl()">${e.easier?'Back to regular':'Make this easier'}</button><button class="btn alt" onclick="P.ex[${P.i}].flag=1;this.textContent='Flagged. Skip or go gently.'">This hurts</button></div>
+ <details open><summary>Step-by-step instructions</summary>${e.easier&&x.e[2]?guide(x.e[2]):guide(e.id,P.home)}</details>
+ <small class="mut">Rest as long as you need between sets.</small>${SAFE}
+ <div class="row">${P.i>0?`<button class="btn ghost" onclick="P.i--;pl()">Back</button>`:''}<button class="btn" onclick="${P.i<P.ex.length-1?'P.i++;pl()':'finish()'}">${P.i<P.ex.length-1?'Next exercise':'Finish'}</button></div>
+ <button class="btn ghost" onclick="${P.i<P.ex.length-1?'P.i++;pl()':'finish()'}">Skip this one</button>`}
+function lastLog(id){for(let i=S.logs.length-1;i>=0;i--){const e=(S.logs[i].ex||[]).find(x=>x.id===id&&x.sets.some(s=>s.ok||s.r));if(e){const s=e.sets.find(s=>s.r)||{};return`${s.r||'?'} reps${s.w?' at '+s.w+' lb':''}`}}return''}
+function quit(){P=null;$('#pl').className='';render()}
+function finish(){
+ const l={d:TODAY,slot:P.slot,lvl:P.lvl};
+ if(W[P.slot].c){l.min=P.min;l.eff=P.eff}else l.ex=P.ex.map(e=>({id:e.id,easier:e.easier,ez:e.ez,flag:e.flag,sets:e.sets}));
+ S.logs.push(l);(S.done[TODAY]=S.done[TODAY]||{})[P.slot]=P.lvl;save();P=null;$('#pl').className='';render();
+ $('#ce').innerHTML=`<div class="cel" onclick="this.remove()"><div><b>✓</b><h2>Workout saved</h2><p class="mut">Added to your progress.</p><button class="btn">Continue</button></div></div>`}
+
+/* ---------- nutrition ---------- */
+function nutrition(){
+ const n=S.nut[TODAY]||{},items=[['pro','Included protein with meals'],['veg','Ate fruits or vegetables'],['reg','Ate regular meals'],['wat','Drank water'],['enough','Ate enough to support activity and recovery']];
+ let h=`<h1>Nutrition</h1><p class="mut">No calorie counting, no weighing food, no forbidden foods.</p>
+ <div class="card"><h3>Today</h3>${items.map(i=>`<button class="chk ${n[i[0]]?'on':''}" onclick="nt('${i[0]}')"><b>${n[i[0]]?'✓':''}</b>${i[1]}</button>`).join('')}</div>
+ <div class="card"><h3>Why protein?</h3><p>Protein helps repair and build muscle after training. A flexible starting reference is about <b>90–110 g a day</b>, if that suits your health. Treat it as a rough guide, not a requirement.</p>
+ ${S.prot.on?`<div class="row" style="align-items:center"><span>Your reference: <b>${S.prot.t} g</b></span><input type="number" value="${S.prot.t}" onchange="S.prot.t=+this.value||100;save();render()" style="max-width:90px"></div><p><span class="tag">Breakfast 20–25 g</span><span class="tag">Lunch 25–30 g</span><span class="tag">Snack 10–20 g</span><span class="tag">Dinner 25–30 g</span></p>`:'<small>Target hidden.</small>'}
+ <button class="btn ghost" onclick="S.prot.on=!S.prot.on;save();render()">${S.prot.on?'Hide the protein target':'Show the protein target'}</button>
+ <p><b>Protein sources:</b> eggs, Greek yogurt, chicken, turkey, fish, beans, tofu, cottage cheese, milk, and anything else you like.</p></div>
+ <div class="card"><h3>A simple balanced meal</h3><p>Try to include: a <b>protein</b>, a <b>fruit or vegetable</b>, some <b>carbohydrates</b>, and a <b>healthy fat</b>. No foods are bad or forbidden.</p></div>
+ <h2>Meal ideas</h2>`+Object.keys(FOODS).map(k=>`<details><summary>${k}</summary>${FOODS[k].map(f=>`<p style="margin:6px 0">• ${f}</p>`).join('')}</details>`).join('')+
+ `<div class="safe">For personalized nutrition or weight-management targets, talk with a registered dietitian. This app doesn't prescribe calories or restrict eating.</div>`;return h}
+function nt(k){const n=S.nut[TODAY]=S.nut[TODAY]||{};n[k]=!n[k];save();render()}
+
+/* ---------- progress ---------- */
+function setW(k,v){const w=S.well[TODAY]=S.well[TODAY]||{};w[k]=w[k]===v?0:v;save();render()}
+function setWb(k){const w=S.well[TODAY]=S.well[TODAY]||{};w[k]=!w[k];save();render()}
+function progress(){
+ const w=S.well[TODAY]||{},wk0=mon(TODAY),d=weekDone(wk0),all=S.logs;
+ const cnt=(a,b)=>all.filter(l=>l.d>=a&&l.d<=b);
+ const wl=cnt(wk0,add(wk0,6)),str=wl.filter(l=>!W[l.slot].c).length,car=wl.filter(l=>W[l.slot].c).length;
+ const cm=wl.reduce((a,l)=>a+(l.min||0),0);
+ const R=(t,k)=>`<p style="margin:12px 0 4px">${t}</p><div class="rt">${[1,2,3,4,5].map(i=>`<button class="${w[k]==i?'on':''}" onclick="setW('${k}',${i})">${i}</button>`).join('')}</div>`;
+ let h=`<h1>Progress</h1><p class="mut">Strength, energy and consistency.</p>
+ <div class="card"><h3>This week</h3><p>${Object.keys(d).length} of 5 opportunities · ${str} strength · ${car} cardio · ${cm} cardio minutes</p><small>No streaks. An incomplete week doesn't reset anything.</small></div>
+ <div class="card"><h3>Today's check-in (optional)</h3><small>1 = low, 5 = great</small>${R('Sleep quality','sleep')}${R('Daytime energy','energy')}${R('Back comfort','back')}${R('Exercise confidence','conf')}${R('Mood','mood')}
+ <button class="chk ${w.ease?'on':''}" onclick="setWb('ease')"><b>${w.ease?'✓':''}</b>Everyday activities felt easier</button>
+ <div class="safe">Persistent back discomfort deserves an assessment by a clinician or physical therapist. Back pain has many possible causes.</div></div>`;
+ const best={};all.forEach(l=>(l.ex||[]).forEach(e=>e.sets.forEach(s=>{const wt=+s.w||0,r=+s.r||0;if(r&&(!best[e.id]||wt>best[e.id].w||wt==best[e.id].w&&r>best[e.id].r))best[e.id]={w:wt,r}})));
+ h+=`<div class="card"><h3>Strength log</h3>${Object.keys(best).length?Object.keys(best).map(i=>`<p style="margin:6px 0">${EX[i].n}: <b>${best[i].r} reps${best[i].w?' at '+best[i].w+' lb':''}</b></p>`).join(''):'<small>Your best lifts will show here after your first workout.</small>'}<small>Home workouts completed: ${all.filter(l=>l.home).length}</small></div>`;
+ const eas=all.filter(l=>l.ex&&l.ex.some(e=>e.ez)).length;if(eas)h+=`<div class="card"><h3>${eas} workout${eas>1?'s':''} where something felt easier</h3></div>`;
+ const rk=wk0,r=S.refl[rk]||{};
+ h+=`<div class="card"><h3>Weekly reflection</h3>${[['e','What felt easier this week?'],['p','What am I proud of?'],['f','What exercise did I enjoy?'],['n','What would I like to improve next week?']].map(q=>`<p style="margin:10px 0 4px">${q[1]}</p><textarea onchange="(S.refl['${rk}']=S.refl['${rk}']||{}).${q[0]}=this.value;save()">${esc(r[q[0]]||'')}</textarea>`).join('')}</div>
+ <div class="card"><h3>Body measurements</h3><small>Totally optional and private. Not part of your progress.</small><button class="btn ghost" onclick="S.meas=!S.meas;save();render()">${S.meas?'Hide this':'Show this'}</button>${S.meas?`<div class="row"><input id="mw" type="number" placeholder="weight (lb)"><button class="btn alt" onclick="S.m.push({d:TODAY,w:+$('#mw').value});save();render()">Save</button></div>${S.m.slice(-5).map(m=>`<small>${m.d}: ${m.w}</small><br>`).join('')}`:''}</div>`;
+ return h}
+
+/* ---------- plan ---------- */
+function sch(d,v){if(!v)return;const a=S.sched[d]=S.sched[d]||[];if(!a.includes(v))a.push(v);save();render()}
+function unsch(d,v){S.sched[d]=(S.sched[d]||[]).filter(x=>x!==v);save();render()}
+function plan(){
+ const w0=add(mon(TODAY),S.wo*7),dn=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+ let h=`<h1>My Plan</h1><div class="card"><h3>${PH[S.phase-1][0]}</h3><p>${PH[S.phase-1][1]}</p><small>Week ${wk()} of 12. You move up when you choose to, not automatically.</small>
+ <div class="row">${S.phase>1?`<button class="btn ghost" onclick="S.phase--;save();render()">Go back a phase</button>`:''}${S.phase<3?`<button class="btn alt" onclick="S.phase++;save();render()">I'm ready for Phase ${S.phase+1}</button>`:''}</div></div>
+ <div class="row" style="align-items:center"><button class="btn ghost" onclick="S.wo--;save();render()">‹</button><b style="text-align:center">${w0}</b><button class="btn ghost" onclick="S.wo++;save();render()">›</button></div>
+ <small>Add workouts to any day. Tap a chip to remove it. Missed workouts don't need to be made up.</small>`;
+ for(let i=0;i<7;i++){const d=add(w0,i),v=isVac(d),dn_=S.done[d]||{};
+  h+=`<div class="day ${v?'v':''}"><div style="width:56px"><b>${dn[i]}</b><br><small>${d.slice(5)}</small></div><div style="flex:1">${v?'<small>Away · optional walks only</small><br>':''}${(S.sched[d]||[]).map(k=>`<span class="tag ${dn_[k]?'':'l'}" onclick="unsch('${d}','${k}')">${dn_[k]?'✓ ':''}${k}</span>`).join('')}</div><select onchange="sch('${d}',this.value)"><option value="">＋</option>${Object.keys(W).map(k=>`<option>${k}</option>`).join('')}</select></div>`}
+ h+=`<h2>Vacation</h2><div class="card"><p>${VMSG}</p>${TRIPS.map(t=>`<span class="tag l">${t.n}: ${t.s.slice(5)} to ${t.e.slice(5)}</span>`).join('')}${S.vac.map(t=>`<span class="tag l">Trip: ${t.s.slice(5)} to ${t.e.slice(5)}</span>`).join('')}
+ <small><br>Vacation Mode switches on automatically during these dates. No workouts are marked missed and no scores drop.</small>
+ <button class="btn alt" onclick="S.vacOn=!S.vacOn;save();render()">${S.vacOn?'Turn off Vacation Mode':'Start Vacation Mode now'}</button>
+ <div class="row"><input type="date" id="vs"><input type="date" id="ve"></div><button class="btn ghost" onclick="if($('#vs').value&&$('#ve').value>=$('#vs').value){S.vac.push({s:$('#vs').value,e:$('#ve').value});save();render()}">Add a future trip</button></div>
+ <h2>Your data</h2><div class="card"><small>Everything is stored only on this device.</small><button class="btn alt" onclick="exp()">Export backup (JSON)</button><label class="btn alt" style="text-align:center">Import backup<input type="file" accept=".json,application/json" hidden onchange="imp(this)"></label><button class="btn ghost" onclick="if(confirm('Erase all progress on this device? This cannot be undone.')){localStorage.removeItem(K);location.reload()}">Reset everything</button></div>
+ <h2>Safety notes</h2>${SAFE}<div class="safe">This app is general fitness support, not medical advice. Keep taking any prescribed medications. Ask your clinician before changing your activity level. Visible changes take time and can't be guaranteed in 12 weeks. Stomach or face fat can't be targeted by specific exercises.</div>
+ <details><summary>Add to your iPhone home screen</summary><p>1. Open this page in Safari.<br>2. Tap the Share button (square with an arrow).<br>3. Scroll down and tap "Add to Home Screen", then tap Add.<br>It will open from your home screen like an app. Your progress is saved on this phone, so use "Export backup" now and then, especially before clearing Safari data or switching phones.</p></details>`;
+ return h}
+function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='fitness-backup-'+TODAY+'.json';document.body.appendChild(a);a.click();a.remove()}
+function imp(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(typeof o!=='object'||!o.done)throw 0;S=Object.assign(S,o);save();alert('Backup restored.');render()}catch(e){alert("That file doesn't look like a backup from this app.")}};r.readAsText(f)}
+render();
+</script></body></html>
